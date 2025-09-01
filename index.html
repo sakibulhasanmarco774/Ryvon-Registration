@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">  
+<head>  
+<meta charset="utf-8" />  
+<meta name="viewport" content="width=device-width, initial-scale=1" />  
+<title>Ryvon Registration</title>  
+
+<!-- Fonts -->  
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">  
+
+<style>  
+  :root{  
+    --bg: #0b0b0c;  
+    --panel: #101113;  
+    --field: #1a1b1e;  
+    --field-border: #2a2c31;  
+    --field-focus: #3b3f46;  
+    --text: #f4f5f7;  
+    --muted: #8d9096;  
+    --btn: #2a2c31;  
+    --btn-hover:#353941;  
+    --accent:#cfd2d8;  
+    --radius-xl: 18px;  
+    --radius-xxl: 22px;  
+    --shadow-sm: 0 2px 12px rgba(0,0,0,.35);  
+    --shadow-md: 0 8px 24px rgba(0,0,0,.5);  
+  }  
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }  
+  html, body { height: 100%; background: var(--bg); margin: 0; }  
+  body{ color: var(--text); font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.35; }  
+  .wrap{ height: 100vh; display: flex; flex-direction: column; }  
+  header{ padding: 40px 12px 20px; display: flex; justify-content: center; align-items: center; }  
+  .brand{ font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: clamp(40px, 10vw, 80px); letter-spacing: .12em; color: #ffffff; text-shadow: 0 8px 30px rgba(255,255,255,.08); margin: 0; text-align: center; }  
+  .container{ flex: 1; display: flex; justify-content: center; align-items: flex-start; padding: 8px 12px 20px; }  
+  .panel{ background: linear-gradient(180deg, #0f1012, #0c0d0f 38%, #0f1013); border: 1px solid #13151a; border-radius: 26px; box-shadow: inset 0 1px 0 rgba(255,255,255,.02), var(--shadow-md); padding: 18px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; }  
+  .group{ margin: 14px 6px; }  
+  label{ display:block; margin: 2px 6px 8px; font-weight: 800; font-size: 18px; letter-spacing: .02em; }  
+  .input{ width: 100%; background: var(--field); color: var(--text); border: 1px solid var(--field-border); border-radius: var(--radius-xl); padding: 14px 16px; font-size: 16px; outline: none; box-shadow: inset 0 1px 0 rgba(255,255,255,.03), var(--shadow-sm); transition: border-color .2s ease, box-shadow .2s ease, background .2s ease; }  
+  .input::placeholder{ color: var(--muted); }  
+  .input:focus{ border-color: var(--field-focus); box-shadow: 0 0 0 4px rgba(88, 100, 118, .15), var(--shadow-sm); background: #1d1f23; }  
+  .otp-row{ display: flex; gap: 12px; align-items: stretch; }  
+  .otp-row .input{ flex: 1; }  
+  .btn{ appearance: none; border: 1px solid var(--field-border); background: var(--btn); color: #fff; border-radius: var(--radius-xl); padding: 12px 16px; font-weight: 700; font-size: 16px; letter-spacing: .02em; cursor: pointer; box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,.03); transition: transform .06s ease, background .18s ease, border-color .18s ease; white-space: nowrap; }  
+  .btn:active{ transform: translateY(1px); }  
+  .btn:hover{ background: var(--btn-hover); border-color: var(--field-focus); }  
+  .btn-otp{ padding: 12px 18px; border-radius: 14px; }  
+  .register-wrap{ margin-top: 20px; }  
+  .register-btn{ width: 100%; background: var(--btn); border: 1px solid #30333a; color: #ffffff; height: 52px; border-radius: 18px; text-transform: uppercase; font-weight: 800; letter-spacing: .15em; font-size: 18px; box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,.03); }  
+  .register-btn:hover{ background: #343740; }  
+  .modal{ position: fixed; inset: 0; background: rgba(0,0,0,.65); display: none; align-items: center; justify-content: center; padding: 24px; z-index: 20; }  
+  .modal.show{ display: flex; }  
+  .dialog{ width: 100%; max-width: 300px; background: #0e1013; border: 1px solid #22252c; border-radius: 18px; box-shadow: var(--shadow-md); padding: 16px; text-align: center; }  
+  .dialog h3{ margin: 0 0 8px; font-size: 16px; font-weight: 800; }  
+  .dialog p{ margin: 6px 0 14px; color: #d7d9de; font-size: 14px; }  
+  .dialog .actions{ display: flex; justify-content: center; }  
+  .ok-btn{ min-width: 100px; height: 38px; border-radius: 12px; font-size: 14px; }  
+</style>  
+</head>  
+<body>  
+  <div class="wrap">  
+    <header>  
+      <div class="brand">RYVON</div>  
+    </header>  
+    <main class="container">  
+      <section class="panel">  
+        <form id="regForm" novalidate>  
+          <div class="group">  
+            <label for="fullName">Full Name</label>  
+            <input id="fullName" name="fullName" class="input" placeholder="Enter your name">  
+          </div>  
+          <div class="group">  
+            <label for="age">Age</label>  
+            <input id="age" name="age" class="input" placeholder="Enter your age">  
+          </div>  
+          <div class="group">  
+            <label for="profession">Profession</label>  
+            <input id="profession" name="profession" class="input" placeholder="Enter your profession">  
+          </div>  
+          <div class="group">  
+            <label for="phone">Phone Number</label>  
+            <input id="phone" name="phone" class="input" placeholder="Enter your mobile number">  
+          </div>  
+          <div class="group">  
+            <label for="otp">OTP Code</label>  
+            <div class="otp-row">  
+              <input id="otp" name="otp" class="input" placeholder="Enter OTP">  
+              <button type="button" class="btn btn-otp" id="sendOtpBtn">Send OTP</button>  
+            </div>  
+          </div>  
+          <div class="register-wrap">  
+            <button type="submit" class="btn register-btn">REGISTER</button>  
+          </div>  
+        </form>  
+      </section>  
+    </main>  
+  </div>  
+
+  <!-- Modal -->  
+  <div class="modal" id="modal">  
+    <div class="dialog">  
+      <h3 id="dlgTitle">Notice</h3>  
+      <p id="dlgMsg">Message text</p>  
+      <div class="actions">  
+        <button class="btn ok-btn" id="okBtn">OK</button>  
+      </div>  
+    </div>  
+  </div>  
+
+<script>  
+  const $ = (sel) => document.querySelector(sel);  
+  const modal = $('#modal');  
+  const dlgMsg = $('#dlgMsg');  
+  const okBtn = $('#okBtn');  
+  let otpClickCount = 0;  
+
+  function showMsg(msg){  
+    dlgMsg.textContent = msg;  
+    modal.classList.add('show');  
+  }  
+
+  okBtn.addEventListener('click', () => modal.classList.remove('show'));  
+
+  // Send OTP button (toggle success/reject alternately)  
+  $('#sendOtpBtn').addEventListener('click', () => {  
+    otpClickCount++;  
+    if(otpClickCount % 2 === 1){  
+      showMsg('OTP successful.'); // কোনো ইমোজি নেই  
+    } else {  
+      showMsg('🚫 WhatsApp numbers are not accepted. Please use a different number.');  
+    }  
+  });  
+
+  // Register button  
+  $('#regForm').addEventListener('submit', (e) => {  
+    e.preventDefault();  
+    showMsg('🚫 Your invite account has been suspended.');  
+  });  
+</script>  
+</body>  
+</html>
